@@ -23,6 +23,7 @@ Back end:
 - Consuming The Movie Database API
 
 ## Future updates
+- Each movie shows a preview onClick
 - Profile pick customizable for each user and displaying on navbar.
 - Update the account page.
 - Maintain the like hearth full on an already liked movie.
