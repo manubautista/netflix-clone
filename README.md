@@ -1,3 +1,4 @@
+# Site Deployed on: https://netflix-by-mb.netlify.app/
 # Preview 
 ![nc](https://user-images.githubusercontent.com/91494874/185765672-bbe591d1-c04d-4b97-b4e1-4d054f08d6d4.png)
 
