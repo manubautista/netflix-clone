@@ -17,13 +17,14 @@ This project was made with:
 Front end:
 - React
 - Tailwind
+- Material UI
 
 Back end:
 - Firebase authentication and Firestore
 - Consuming The Movie Database API
 
 ## Future updates
-- Each movie shows a preview onClick
+- Each movie shows a Popup with details onClick ✅
 - Profile pick customizable for each user and displaying on navbar.
 - Update the account page.
 - Maintain the like hearth full on an already liked movie.
