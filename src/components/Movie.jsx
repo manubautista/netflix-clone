@@ -14,7 +14,7 @@ const Movie = ({ item }) => {
   return (
     <>
       <Modal open={modal} onClose={openCloseModal}>
-        <MovieModal item={item} />
+        <MovieModal item={item} handleClick={()=>openCloseModal()}/>
       </Modal>
 
       <div
