@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useNavigate } from "react-router-dom";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { FaTimesCircle } from "react-icons/fa";
-import Swal from "sweetalert2";
+import { AiFillCloseCircle } from "react-icons/ai";
+import Swal from 'sweetalert2'
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { onSnapshot } from "firebase/firestore";
 
@@ -43,22 +42,10 @@ const AccountModal = ({ accountItem, handleClick }) => {
     });
   }, [user?.email]);
 
-  const movieRef = doc(db, "users", `${user?.email}`);
-
-  const deleteMovie = async (passedID) => {
-    try {
-      const result = movies.filter((item) => item.id !== passedID);
-      await updateDoc(movieRef, {
-        savedShows: result,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const Toast = Swal.mixin({
     toast: true,
     position: "top-right",
-    iconColor: "white",
+    iconColor: "#ff1616",
     customClass: {
       popup: "colored-toast",
     },
@@ -67,14 +54,51 @@ const AccountModal = ({ accountItem, handleClick }) => {
     timerProgressBar: true,
   });
 
+  const movieRef = doc(db, "users", `${user?.email}`);
+
+  const deleteMovie = (passedID) => {
+    Swal.fire()
+    Swal.fire({
+      title: "Delete Movie",
+      text: "You want to delete this movie from your list?",
+      color: '#ffffff',
+      icon: "question",
+      target: "#modal",
+      background:  'rgba(0,0,0)',
+      customClass: { container: "alert-absolute" },
+      showCancelButton: true,
+      confirmButtonColor: "#ff1616",
+      cancelButtonColor: "#232323",
+      cancelButtonText: "Cancel",
+      confirmButtonText: "Delete",
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        try {
+          const result = movies.filter((item) => item.id !== passedID);
+          await updateDoc(movieRef, {
+            savedShows: result,
+          })
+          Toast.fire({
+            icon: "success",
+            title: "Movie removed!",
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })
+    
+  };
+
+
   return (
     <div id="modal" className={styles.modal}>
       <div
         id="movie-modal"
         className="border-none rounded w-[300px] h-[450px] max-h-[90%] sm:h-[500px] md:max-h-[500px] sm:w-[600px] xl:w-[800px]"
       >
-        <div onClick={() => handleClick()}>
-          <FaTimesCircle className="w-7 h-7 m-3 cursor-pointer absolute right-0" />
+        <div onClick={() => handleClick()} className='text-gray-600'>
+          <AiFillCloseCircle className="w-7 h-7 m-3 cursor-pointer absolute right-0" />
         </div>
         <div className="absolute w-full h-[130px] xl:h-[244px] md:h-[130px] sm:top-[210px] top-10 bg-gradient-to-t 2xl:top-[43%] from-stone-900"></div>
         <img
@@ -94,7 +118,7 @@ const AccountModal = ({ accountItem, handleClick }) => {
             </button>
           </div>
           <p
-            className="text-3xl top-[165%] left-[84%] absolute cursor-pointer xl:left-[250px] xl:top-[106%] 2xl:top-[107%] lg:top-[106%] lg:left-[48%] md:top-[109%] md:left-[45%]"
+            className="text-3xl top-[165%] left-[84%] absolute cursor-pointer xl:left-[250px] xl:top-[126%] 2xl:top-[127%] lg:top-[126%] lg:left-[45%] md:top-[127%] md:left-[43%] sm:top-[130%] sm:left-[43%]"
             onClick={() => deleteMovie(accountItem.id)}
           >
             <AiOutlineCloseCircle />

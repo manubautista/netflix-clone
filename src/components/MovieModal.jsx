@@ -6,7 +6,7 @@ import { useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { FaTimesCircle } from "react-icons/fa";
+import { AiFillCloseCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +39,7 @@ const MovieModal = ({ item, handleClick }) => {
   const Toast = Swal.mixin({
     toast: true,
     position: "top-right",
-    iconColor: "white",
+    iconColor: "#ff1616",
     customClass: {
       popup: "colored-toast",
     },
@@ -69,12 +69,14 @@ const MovieModal = ({ item, handleClick }) => {
       Swal.fire({
         title: "Not logged in!",
         text: "Please log in to your account to save a movie",
+        color: '#ffffff',
         icon: "warning",
         target: "#modal",
+        background:  'rgba(0,0,0)',
         customClass: { container: "alert-absolute" },
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#ff1616",
+        cancelButtonColor: "#232323",
         cancelButtonText: "Later",
         confirmButtonText: "Login",
       }).then((result) => {
@@ -90,8 +92,8 @@ const MovieModal = ({ item, handleClick }) => {
         id="movie-modal"
         className="border-none rounded w-[300px] h-[450px] max-h-[90%] sm:h-[500px] md:max-h-[500px] sm:w-[600px] xl:w-[800px]"
       >
-        <div onClick={() => handleClick()}>
-          <FaTimesCircle className="w-7 h-7 m-3 cursor-pointer absolute right-0" />
+        <div onClick={() => handleClick() } className='text-gray-600'>
+          <AiFillCloseCircle className="w-7 h-7 m-3 cursor-pointer absolute right-0" />
         </div>
         <div className="absolute w-full h-[130px] xl:h-[244px] md:h-[130px] sm:top-[210px] top-10 bg-gradient-to-t 2xl:top-[43%] from-stone-900"></div>
         <img
