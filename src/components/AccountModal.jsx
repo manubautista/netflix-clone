@@ -45,7 +45,7 @@ const AccountModal = ({ accountItem, handleClick }) => {
   const Toast = Swal.mixin({
     toast: true,
     position: "top-right",
-    iconColor: "#ff1616",
+    iconColor: "#ff5252",
     customClass: {
       popup: "colored-toast",
     },
