@@ -18,6 +18,7 @@ Front end:
 - React
 - Tailwind
 - Material UI
+- Sweet Alert 2
 
 Back end:
 - Firebase authentication and Firestore
